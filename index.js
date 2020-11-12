@@ -157,10 +157,10 @@ class Instructor extends Lambdasian {
     this.subject = "Lambda";
     return `Today we are learning about ${subject}`
   }
-  grade(studentOne, subject) {
+  grade(Lambdasian, subject) {
     this.subject = "Lambda";
     this.name = "Ryan";
-    return `${this.name} receives a perfect score on ${this.subject}`
+    return `${this.name} receives a perfect score on ${subject}`
   }
 }
 
@@ -200,6 +200,7 @@ class Student extends Lambdasian {
   sprintChallenge(subject) {
     return `${this.name} has begun sprint challenge on ${subject}`
   }
+  
 }
 
 /*
@@ -215,8 +216,18 @@ class Student extends Lambdasian {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-
+class ProjectManager extends Instructor{
+  constructor(attrs) {
+    super(attrs);
+    this.gradClassName = attrs.gradClassName;
+    this.favInstructor = attrs.favInstructor;
+  }
+  standUp() {
+    return `${name} announces to ${web38}, @channel standy times!`
+  }
+  debugsCode() {
+    return `${this.name} debugs ${student.name}' code on ${this.subject}`
+  }
 }
 
 /*
