@@ -78,27 +78,33 @@ class Person{
 class Car {
   constructor(model, milesPerGallon) {
     this.model = model;
-    this.milesPerGallon = 20;
+    this.milesPerGallon = milesPerGallon;
     this.odometer = 0;
     this.tank = 0;   
   }
-
   fill(gallons) {
-    if(this.tank < 20) {
-      this.tank = gallons + this.tank
-    }   
+      return this.tank = gallons + this.tank
   }  
   drive(distance) {
-    this.odometer = distance;
-    let distanceTraveled = (distance/this.milesPerGallon);
-    this.tank = Math.round(distance/this.milesPerGallon);
-    if(distanceTraveled > this.tank) {
-      return `I ran out of fuel at 20 miles!`
+    const miles = this.tank * this.milesPerGallon;
+    if(distance > miles) {
+      this.tank = 0;
+      this.odometer = this.odometer + miles;
+      return `I ran out of fuel at ${this.odometer} miles!`
+    } else {
+      this.odometer = this.odometer + distance;
+      this.tank = this.tank - (distance/ this.milesPerGallon);
     }
   }
-  
 }
-
+    // this.odometer = distance;
+    // // let distanceTraveled = (distance/this.milesPerGallon);
+    // // this.tank = Math.round(distance/this.milesPerGallon);
+    // if(this.tank = 0) {
+    //   return this.tank = 0;
+    // }else if(distance > this.tank) {
+    //   return `I ran out of fuel at ${this.odometer} miles!`
+ 
 
 /*
   TASK 3
@@ -118,7 +124,7 @@ class Lambdasian {
     this.age = attrs.age;
     this.location = attrs.location;
   }
-  speak() {
+  speak(subject) {
     return `${this.name} I am from ${this.location}`;
   }
 
@@ -144,9 +150,24 @@ class Instructor extends Lambdasian {
     this.specialty = attrs.specialty;
     this.favLanguage = attrs.favLanguage;
     this.catchPhrase = attrs.catchPhrase;
-
+    this.student = attrs.student;
+    this.name = attrs.name;
+  }
+  demo(subject) {
+    this.subject = "Lambda";
+    return `Today we are learning about ${subject}`
+  }
+  grade(studentOne, subject) {
+    this.subject = "Lambda";
+    this.name = "Ryan";
+    return `${this.name} receives a perfect score on ${this.subject}`
   }
 }
+
+const studentOne = new Lambdasian({
+  name: "Ryan",
+  subject: "Web 38",
+});
 
 /*
   TASK 5
@@ -163,8 +184,22 @@ class Instructor extends Lambdasian {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
+class Student extends Lambdasian {
+  constructor(attrs) {
+    super(attrs);
+    this.previousBackground = attrs.previousBackground;
+    this.className = attrs.className;
+    this.favSubjects = attrs.favSubjects;
+  }
+  listSubjects() {
+    return `Loving ${this.favSubjects}, ${this.favSubjects}, ${this.favSubjects}!`
+  }
+  PRAssignment(subject) {
+    return `${this.name} has submitted a PR for ${subject}`
+  }
+  sprintChallenge(subject) {
+    return `${this.name} has begun sprint challenge on ${subject}`
+  }
 }
 
 /*
