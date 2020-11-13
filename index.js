@@ -150,24 +150,15 @@ class Instructor extends Lambdasian {
     this.specialty = attrs.specialty;
     this.favLanguage = attrs.favLanguage;
     this.catchPhrase = attrs.catchPhrase;
-    this.student = attrs.student;
-    this.name = attrs.name;
   }
   demo(subject) {
-    this.subject = "Lambda";
     return `Today we are learning about ${subject}`
   }
-  grade(Lambdasian, subject) {
-    this.subject = "Lambda";
-    this.name = "Ryan";
-    return `${this.name} receives a perfect score on ${subject}`
+  grade(student, subject) {
+    return `${student.name} receives a perfect score on ${subject}`
   }
 }
 
-const studentOne = new Lambdasian({
-  name: "Ryan",
-  subject: "Web 38",
-});
 
 /*
   TASK 5
@@ -199,8 +190,7 @@ class Student extends Lambdasian {
   }
   sprintChallenge(subject) {
     return `${this.name} has begun sprint challenge on ${subject}`
-  }
-  
+  }  
 }
 
 /*
@@ -225,9 +215,11 @@ class ProjectManager extends Instructor{
   standUp(web38) {
     return `${this.name} announces to ${web38}, @channel standy times!`
   }
-  debugsCode(Student, subject) {
-    return `${name} debugs ${student.name}' code on ${subject}`
+  debugsCode(student, subject) {
+    return `${this.name} debugs ${student.name}' code on ${subject}`
   }
+  
+  
 }
 
 /*
